@@ -113,12 +113,26 @@ dialog.gal::backdrop{background:rgba(0,0,0,.82)}
 .gal .gh .modes{display:flex;gap:8px;margin-left:auto}
 .gal .gh button[aria-pressed=true]{background:var(--red);border-color:var(--red)}
 .erpmore{background:none;border:0;border-bottom:2px solid var(--red);font:700 10.5px var(--body);letter-spacing:.06em;text-transform:uppercase;padding:2px 0;margin-top:8px;cursor:pointer;color:var(--ink)}
+
+        /* Professional Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .stagger {
+            transition-delay: var(--delay);
+        }
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <a class="logo" href="#top">Irfan Ali<span class="dot" style="margin:0 0 0 6px"></span></a>
-  <nav aria-label="Main"><a href="#top">Home</a><a href="#about">About</a><a href="#services">Focus</a><a href="#skills">Skills</a><a href="#work">Work</a><a href="#contact">Contact</a></nav>
+  <nav aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="focus.html">Focus</a><a href="skills.html">Skills</a><a href="work.html">Work</a><a href="contact.html">Contact</a></nav>
   <a class="btn" href="contact.html">Let's talk ↗</a>
 </div></header>
 
@@ -130,7 +144,7 @@ dialog.gal::backdrop{background:rgba(0,0,0,.82)}
       <h1>Computer<br>Science</h1>
       <svg class="scribble" viewBox="0 0 300 30" aria-hidden="true"><path d="M5 22 C60 6 140 4 295 12 M20 27 C90 14 190 14 285 20" fill="none" stroke="#ff3b1f" stroke-width="7" stroke-linecap="round"/></svg>
       <p class="sub">I build things using C, Java, and Python, with a deep passion for understanding the inner workings of compilers and database systems.</p>
-      <a class="btn" href="#work">View my work ↗</a>
+      <a class="btn" href="work.html">View my work ↗</a>
     </div>
     <div class="pic">
       <div class="based">Based in<br>Pakistan</div>
@@ -210,7 +224,7 @@ dialog.gal::backdrop{background:rgba(0,0,0,.82)}
 <footer><div class="wrap">
   <div class="fg">
     <div><a class="logo" href="#top">Irfan Ali<span class="dot" style="margin:0 0 0 6px"></span></a><p style="font-size:11.5px;color:#ccc;max-width:26ch">Computer science student building things in C, Java, and Python.</p></div>
-    <div><h4>Navigation</h4><ul><li><a href="#top">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#work">Work</a></li></ul></div>
+    <div><h4>Navigation</h4><ul><li><a href="#top">Home</a></li><li><a href="about.html">About</a></li><li><a href="skills.html">Skills</a></li><li><a href="work.html">Work</a></li></ul></div>
     <div><h4>Focus</h4><ul><li>C++ programming</li><li>Java & Python</li><li>Databases</li><li>Compilers</li></ul></div>
     <div><h4>Contact</h4><ul><li><a href="mailto:irfaanaley@gmail.com">irfaanaley@gmail.com</a></li><li><a href="https://www.linkedin.com/in/irfan-ali-74aa73422" target="_blank">LinkedIn</a></li><li><a href="https://www.instagram.com/arbabirfan77/" target="_blank">Instagram</a></li><li><a href="https://www.facebook.com/profile.php?id=61555975534521" target="_blank">Facebook</a></li></ul></div>
   </div>
