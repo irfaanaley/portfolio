@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Focus | Irfan Ali</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #ff3b1f;
+            --ink: #0a0a0a;
+            --paper: #fff;
+            --soft: #f4f4f4;
+            --mute: #555;
+            --line: #ddd;
+            --display: Anton, Impact, "Arial Narrow", sans-serif;
+            --body: Inter, system-ui, sans-serif;
+        }
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font: 400 15px/1.6 var(--body);
+        }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background: rgba(255,255,255,.94);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--line);
+        }
+        header .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        .logo {
+            font: 700 17px var(--body);
+            letter-spacing: .02em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        nav {
+            display: none;
+            gap: 30px;
+        }
+        nav a {
+            font: 700 10.5px var(--body);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: var(--red);
+        }
+        @media(min-width:900px) {
+            nav { display: flex; }
+        }
+        .btn {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            font: 700 11px var(--body);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 11px 16px;
+            border: 0;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background: var(--red);
+        }
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        main {
+            padding: 60px 0;
+        }
+        .focus-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .lbl {
+            font: 700 11px var(--body);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lbl .dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            margin-right: 8px;
+        }
+        h1 {
+            font: 400 clamp(40px, 5vw, 64px)/.9 var(--display);
+            text-transform: uppercase;
+            margin: 0;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        h1 em {
+            color: var(--red);
+            font-style: normal;
+        }
+        .svc-grid {
+            display: grid;
+            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+        .svc-card {
+            padding: 32px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .svc-card:hover {
+            border-color: var(--red);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .ic {
+            display: inline-block;
+            background: var(--ink);
+            color: #fff;
+            font: 700 11px var(--body);
+            padding: 4px 8px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .svc-card h3 {
+            font: 700 20px var(--body);
+            margin: 0 0 12px;
+            letter-spacing: -0.01em;
+        }
+        .svc-card p {
+            color: var(--mute);
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .stagger { transition-delay: var(--delay); }
+
+        footer {
+            background: var(--ink);
+            color: #fff;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+        footer .wrap {
+            display: grid;
+            gap: 30px;
+        }
+        @media(min-width:900px) {
+            footer .wrap {
+                grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            }
+        }
+        footer h4 {
+            font: 700 11px var(--body);
+            margin: 0 0 12px;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        footer ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 11.5px;
+            line-height: 1.9;
+            color: #ccc;
+        }
+        footer ul li a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer ul li a:hover {
+            color: var(--red);
+        }
+        .copy {
+            font-size: 11px;
+            color: #888;
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap">
+            <a class="logo" href="index.html">Irfan Ali<span class="dot"></span></a>
+            <nav aria-label="Main">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="focus.html" style="color: var(--red);">Focus</a>
+                <a href="skills.html">Skills</a>
+                <a href="work.html">Work</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <a class="btn" href="contact.html">Let's talk ↗</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <div class="focus-header reveal">
+                <p class="lbl"><span class="dot"></span>My Expertise</p>
+                <h1 class="stagger" style="--delay: 0.1s">What I <em style="color: var(--red);">Focus</em> On</h1>
+            </div>
+
+            <div class="svc-grid">
+                <div class="svc-card reveal" style="--delay: 0.1s">
+                    <div class="ic">C++</div>
+                    <h3>C++ programming</h3>
+                    <p>Developing high-performance console and graphics programs written from scratch to understand memory and hardware.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.2s">
+                    <div class="ic">Java</div>
+                    <h3>Java Development</h3>
+                    <p>Building robust, scalable desktop applications and enterprise-grade software using object-oriented principles.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.3s">
+                    <div class="ic">Py</div>
+                    <h3>Python</h3>
+                    <p>Developing versatile scripts, automation tools, and scalable solutions for modern computing challenges.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.4s">
+                    <div class="ic">DB</div>
+                    <h3>Databases</h3>
+                    <p>Designing efficient relational schemas and writing complex SQL queries to manage data with precision.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.5s">
+                    <div class="ic">&lt;/&gt;</div>
+                    <h3>Compilers</h3>
+                    <p>Exploring the deep layers of computer science to understand how high-level code transforms into machine instructions.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.6s">
+                    <div class="ic">App</div>
+                    <h3>Desktop Apps</h3>
+                    <p>Creating functional software with a focus on UX, such as my Java Notepad featuring a custom installer.</p>
+                </div>
+                <div class="svc-card reveal" style="--delay: 0.7s">
+                    <div class="ic">?!</div>
+                    <h3>Problem solving</h3>
+                    <p>Applying algorithmic thinking to break down complex, large-scale problems into small, manageable working steps.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="wrap">
+            <div>
+                <a class="logo" href="index.html" style="color: #fff; font-size: 17px;">Irfan Ali<span class="dot"></span></a>
+                <p style="color: #ccc; font-size: 11.5px; margin-top: 10px; max-width: 26ch;">Computer science student building things in C, Java, and Python.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="focus.html">Focus</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Focus</h4>
+                <ul>
+                    <li>C++ programming</li>
+                    <li>Java & Python</li>
+                    <li>Databases</li>
+                    <li>Compilers</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:irfaanaley@gmail.com">irfaanaley@gmail.com</a></li>
+                    <li><a href="https://www.linkedin.com/in/irfan-ali-74aa73422" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/arbabirfan77/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=61555975534521" target="_blank">Facebook</a></li>
+                </ul>
+            </div>
+            <div class="copy">
+                &copy; 2026 Irfan Ali. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
