@@ -210,6 +210,8 @@
         }
         .bar-label span {
             color: var(--red);
+            font-weight: 700;
+            margin-left: 5px;
         }
         .bar-bg {
             height: 8px;
@@ -225,6 +227,10 @@
             top: 0;
             width: 0;
             transition: width 1.5s cubic-bezier(0.1, 0.5, 0.2, 1);
+            z-index: 1;
+        }
+        .bar-container.active .bar-fill {
+            width: var(--target-width);
         }
         footer {
             background: var(--ink);
@@ -398,6 +404,14 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    const fill = entry.target.querySelector('.bar-fill');
+                    if (fill) {
+                        const targetWidth = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = targetWidth;
+                        }, 100);
+                    }
                 }
             });
         }, { threshold: 0.1 });
